@@ -5,37 +5,38 @@ pygame.init()
 win = pygame.display.set_mode((600,400))
 pygame.display.set_caption('Mario')
 
-bg = pygame.image.load('bg.png')
+img_path = './assets/'
+bg = pygame.image.load(img_path+'bg.png')
 
-mario_right = [pygame.image.load("w_0.png").convert_alpha(),
-	           pygame.image.load("w_0.png").convert_alpha(),
-               pygame.image.load("w_1.png").convert_alpha(),
-               pygame.image.load("w_1.png").convert_alpha(),
-               pygame.image.load("w_2.png").convert_alpha(),
-               pygame.image.load("w_2.png").convert_alpha(),
-               pygame.image.load("w_3.png").convert_alpha(),
-               pygame.image.load("w_3.png").convert_alpha()]
+mario_right = [pygame.image.load(img_path+"w_0.png").convert_alpha(),
+	       pygame.image.load(img_path+"w_0.png").convert_alpha(),
+               pygame.image.load(img_path+"w_1.png").convert_alpha(),
+               pygame.image.load(img_path+"w_1.png").convert_alpha(),
+               pygame.image.load(img_path+"w_2.png").convert_alpha(),
+               pygame.image.load(img_path+"w_2.png").convert_alpha(),
+               pygame.image.load(img_path+"w_3.png").convert_alpha(),
+               pygame.image.load(img_path+"w_3.png").convert_alpha()]
 
-mario_left = [pygame.image.load("wl_0.png").convert_alpha(),
-              pygame.image.load("wl_0.png").convert_alpha(),
-              pygame.image.load("wl_1.png").convert_alpha(),
-              pygame.image.load("wl_1.png").convert_alpha(),
-              pygame.image.load("wl_2.png").convert_alpha(),
-              pygame.image.load("wl_2.png").convert_alpha(),
-              pygame.image.load("wl_3.png").convert_alpha(),
-              pygame.image.load("wl_3.png").convert_alpha()]
+mario_left = [pygame.image.load(img_path+"wl_0.png").convert_alpha(),
+              pygame.image.load(img_path+"wl_0.png").convert_alpha(),
+              pygame.image.load(img_path+"wl_1.png").convert_alpha(),
+              pygame.image.load(img_path+"wl_1.png").convert_alpha(),
+              pygame.image.load(img_path+"wl_2.png").convert_alpha(),
+              pygame.image.load(img_path+"wl_2.png").convert_alpha(),
+              pygame.image.load(img_path+"wl_3.png").convert_alpha(),
+              pygame.image.load(img_path+"wl_3.png").convert_alpha()]
 
 rindex = 0
 lindex = 0
 is_right = True
 vel = 5
 
-FPS = 30
+FPS = 30 #Change if you want to speed up the animation
 run = True
 
 x = 0
 y = 323
-hitbox = mario_right[0].get_rect()
+hitbox = mario_right[0].get_rect() #All images have the same dimensions
 
 def commands():
     global run, x, y, rindex, lindex, is_right
@@ -58,7 +59,7 @@ def commands():
         if not keys[pygame.K_LEFT]:
             lindex = 0
         
-def pin():
+def render():
     global rindex, lindex
     win.blit(bg,(0, 0))
     if is_right:
@@ -74,8 +75,8 @@ def pin():
 while run:
     pygame.time.Clock().tick(FPS)
     commands()
-    pin()
-    print(hitbox)
+    render()
+    #print(hitbox)
     pygame.display.update()
 
 pygame.quit()
